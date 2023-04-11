@@ -1,0 +1,48 @@
+<odoo>
+    <template id="t4_auth.fields" name="T4 Extend" inherit_id="auth_signup.fields">
+        <xpath expr="." position="replace">
+            <t>
+            <h1 style="text-align:center;padding-top:25px">Sign Up</h1>
+            <t t-call-assets="web.assets_frontend_css"/>
+                <div class="mb-3">
+                    <p type="email" class="form-control form-control-sm" style="height: 40px; align-items: center; display: flex;"> Email: <span>
+                            <t t-out="email" />
+                        </span>
+                    </p>
+                </div>
+
+                <div class="mb-3 field-login">
+                    <label for="login" style="margin-bottom: 8px;">Username</label>
+                    <input type="text" name="login" t-att-value="login" id="login"
+                        class="form-control form-control-sm" autofocus="autofocus"
+                        autocapitalize="off" required="required"
+                        t-att-readonly="'readonly' if only_passwords else None" />
+                </div>
+
+                <div class="mb-3 field-name">
+                    <label for="name" style="margin-bottom: 8px;">Your Name</label>
+                    <input type="text" name="name" t-att-value="name" id="name"
+                        class="form-control form-control-sm" placeholder="e.g. John Doe"
+                        required="required" t-att-readonly="'readonly' if only_passwords else None"
+                        t-att-autofocus="'autofocus' if login and not only_passwords else None" />
+                </div>
+
+                <div class="mb-3 field-password pt-2">
+                    <label for="password" style="margin-bottom: 8px;">Password</label>
+                    <input type="password" name="password" id="password"
+                        class="form-control form-control-sm"
+                        required="required"
+                        t-att-autofocus="'autofocus' if only_passwords else None" />
+                </div>
+
+                <div class="mb-3 field-confirm_password">
+                    <label for="confirm_password" style="margin-bottom: 8px;">Confirm Password</label>
+                    <input type="password" name="confirm_password" id="confirm_password"
+                        class="form-control form-control-sm" required="required" />
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+
+</odoo>

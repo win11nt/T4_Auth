@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_t4_auth_email_wizard">
+        <field name="name">T4 Auth Email Wizard</field>
+        <field name="model">t4.auth.email.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="container">
+                        <div class="mb-3 w-100">
+                            <h3 class="fw-bold">Change Email</h3>
+
+                            <div class="mt-2">
+                                <label for="verify_code" class="px-0">Verification Code</label>
+                                <field id="verify_code" name="verify_code" />
+                            </div>
+                        </div>
+                    </div>
+
+                </sheet>
+                <footer>
+                    <!-- <button type="object" name="enable" class="btn btn-primary"
+                            string="Activate" data-hotkey="q"/> -->
+                    <button string="Cancel" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

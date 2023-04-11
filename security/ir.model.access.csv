@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+t4.access_t4_signup_user,User,t4_auth.model_t4_auth_token,t4_signup_group_user,1,0,0,0
+t4.access_t4_signup_manager,Manager,t4_auth.model_t4_auth_token,t4_signup_group_manager,1,0,0,0
+t4.access_t4_signup_portal,Portal,t4_auth.model_t4_auth_token,base.group_portal,1,1,1,1
+t4.access_t4_signup_public,Public,t4_auth.model_t4_auth_token,base.group_public,1,1,1,1
+
+
+
+t4.access_t4_email_wz_user,User,t4_auth.model_t4_auth_email_wizard,t4_signup_group_user,1,1,1,1
+t4.access_t4_email_wz_manager,Manager,t4_auth.model_t4_auth_email_wizard,t4_signup_group_manager,1,1,1,1
+t4.access_t4_email_wz_portal,Portal,t4_auth.model_t4_auth_email_wizard,base.group_portal,1,1,1,1
+

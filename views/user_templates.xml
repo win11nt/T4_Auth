@@ -1,0 +1,128 @@
+<odoo>
+    <!-- /my/account -->
+    <!-- Email become readonly -->
+    <template id="t4_auth.portal_my_details_fields" name="T4 My Detail Fields Extend" inherit_id="portal.portal_my_details_fields">
+        <xpath expr="//div[.//label[@for='email']]" position="replace">
+        <t t-call-assets="web.assets_frontend_css"/>
+            <div class="mb-3  col-xl-6">
+                <label class="col-form-label" for="email">Email</label>
+                <p id="email" class="form-control">
+                    <t t-esc="email or partner.email" />
+                </p>
+            </div>
+        </xpath>
+
+    </template>
+
+
+    <!-- /my/security  -->
+    <template id="t4_auth.portal_security" inherit_id="portal.portal_my_security">
+        <xpath expr="//section[@name='portal_change_password']" position="after">
+        <t t-call-assets="web.assets_frontend_css"/>
+            <section name="portal_change_email">
+                <h3>Change Email</h3>
+                <div>
+                    <div class="mb-3">
+                        <label for="email_current">Your email: <span>
+                                <t t-out="email"></t>
+                            </span>
+                        </label>
+                    </div>
+                    <a href="/my/security/email/change" id="email_update_btn"
+                        class="but btn btn-secondary">Change Email</a>
+                </div>
+            </section>
+        </xpath>
+    </template>
+
+    <template id="t4_auth.t4_change_email_pre_form">      
+    <t t-call-assets="web.assets_frontend_css"/>
+     <h1 style="text-align:center">Change Email</h1>
+        <form method="post" action="/my/security/email/change" class="oe_signup_form">
+            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+
+            <div class="mb-3 field-password pt-2" t-if="not verified">
+                <label for="password">Your Password</label>
+                <input type="password" name="password" id="password"
+                    class="form-control form-control-sm"
+                    required="required" />
+            </div>
+            <div class="mb-3 ">
+                <label for="email">New Email</label>
+                <input type="email" name="email" id="email"
+                    class="form-control form-control-sm" autofocus="autofocus"
+                    autocapitalize="off" required="required"
+                />
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                Verify
+            </button>
+        </form>
+    </template>
+
+    <template id="t4_auth.t4_change_email_confirm_form">
+    <t t-call-assets="web.assets_frontend_css"/>
+        <form method="post" action="/my/security/email/change/confirm" class="oe_signup_form">
+            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+            <t t-if="verified">
+                <div class="mb-3 ">
+                    <label for="email_code">Code</label>
+                    <input type="text" name="email_code" id="email_code"
+                        class="form-control form-control-sm" autofocus="autofocus"
+                        autocapitalize="off" required="required"
+                    />
+                </div>
+                <input type="hidden" name="email_process_ss" t-att-value="email_process_ss" />
+            </t>
+
+            <button type="submit" class="btn btn-primary">
+                Verify
+            </button>
+        </form>
+    </template>
+
+    <template id="t4_auth.t4_change_email">
+    <t t-call-assets="web.assets_frontend_css"/>
+        <t t-call="web.login_layout">
+            <div class="container">
+                <div t-if="message" class="oe_login_form clearfix">
+                    <p class="alert alert-success" t-if="message" role="status">
+                        <t t-esc="message" />
+                    </p>
+                </div>
+                <p class="alert alert-danger" t-if="error" role="alert">
+                    <t t-esc="error" />
+                </p>
+
+                <t t-if="not verified">
+                    <t t-call="t4_auth.t4_change_email_pre_form" />
+                </t>
+                <t t-elif="verified">
+                    <t t-call="t4_auth.t4_change_email_confirm_form" />
+                </t>
+                <t t-else="">
+                    <p>Something went wrong... Please try again!</p>
+                </t>
+
+            </div>
+        </t>
+    </template>
+
+    <template id="t4_auth.t4_change_email_confirm">
+    <t t-call-assets="web.assets_frontend_css"/>
+        <t t-call="web.login_layout">
+            <div class="container">
+                <div class="oe_login_form clearfix">
+                    <p class="alert alert-success" t-if="message" role="status">
+                        <t t-esc="message" />
+                    </p>
+                    <p class="alert alert-danger" t-if="error" role="alert">
+                        <t t-esc="error" />
+                    </p>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>
